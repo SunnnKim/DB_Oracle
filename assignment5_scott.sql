@@ -37,11 +37,11 @@ WHERE e.deptno = d.deptno AND
 -- 54) 근무지별로 근무하는 사원의 수가 5명 이하인 경우, 인원이 적은 도시순으로 정렬하시오.
 -- (근무 인원이 0명인 곳도 표시)
 
-SELECT  d.loc,  COUNT(e.deptno)
+SELECT  d.loc,  COUNT(e.empno)
 FROM emp e, dept d
 WHERE e.deptno(+) = d.deptno
 GROUP BY d.loc
-HAVING COUNT(e.deptno) <=5
+HAVING COUNT(e.empno) <=5
 ORDER BY COUNT(*);
 
 
@@ -65,6 +65,8 @@ SELECT a.ename employee, a.hiredate "emp hired",
 FROM emp a, emp b
 WHERE a.mgr = b.empno
                 AND a.hiredate < b.hiredate;
+
+
 
 
 -- 57) 사원의 이름 및 사원번호를 관리자의 이름과 관리자 번호와 함께 표시하고 
@@ -99,8 +101,9 @@ ORDER BY department, employee, colleague;
 -- 59)10번 부서에서 근무하는 사원들의 
 -- 부서번호, 부서이름, 사원이름, 월급, 급여등급을 출력하시오.
 
-SELECT e.deptno, d.dname, e.ename, e.sal, e.sal * 12"Annual salary"
-FROM emp e, dept d
+SELECT e.deptno, d.dname, e.ename, e.sal, s.grade
+FROM emp e, dept d, salgrade s
 WHERE e.deptno = d.deptno 
+            AND e.sal  BETWEEN  s.losal ANd  s.hisal
                AND e.deptno = 10; 
 

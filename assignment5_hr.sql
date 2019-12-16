@@ -1,3 +1,22 @@
+/*
+        Join : 다른 테이블에 저장되어 있는 데이터를 산출하기 위함
+        employees 테이블에서 department_id (외래키) 뽑을 수 있음
+        department_id 를 통해 departments 테이블에서 department_name 에 접근할 수 있음
+        < 예시 >
+        Blank 라는 이름을 가진 직원의 department_name?
+        employees 테이블에서 dapartment_id을 가지고  departments 테이블에 접근 
+        -> departments.department_name을 가지고 옴
+*/
+
+-- 문제 ) IT부서에서 근무하고 있는 사람들을 출력하라
+SELECT e.first_name, e.last_name,
+                e.department_id,d.department_name, salary
+FROM employees e, departments d
+WHERE e.department_id = d.department_id
+                AND d.department_name = 'IT';
+
+
+
 --문제1) EMPLOYEES 테이블과 DEPARTMENTS 테이블을 
 --Cartesian Product(모든 가능한 행들의 Join)하여 사원번호,이름,업무,부서번호,부서명, 근무지를 출력하여라. 
 
@@ -10,8 +29,10 @@ FROM employees e, departments d;
 
 --문제2) EMPLOYEES 테이블에서 사원번호,이름,업무, EMPLOYEES 테이블의 부서번호, 
 --DEPARTMENTS 테이블의 부서번호,부서명,근무지를 출력하여라. 
+
+-- inner join
 SELECT  e.employee_id, e.last_name, e.job_id,
-        e.employee_id, d.department_id,
+        e.department_id, d.department_id,
         d.department_name, d.location_id
 FROM employees e, departments d
 WHERE e.department_id = d.department_id;
@@ -35,8 +56,8 @@ WHERE e.department_id = d.department_id
 
 --문제5) EMPLOYEES 테이블과 DEPARTMENTS 테이블의 부서번호를 조인하고 
 --SA_MAN 사원만의 사원번호,이름,급여,부서명,근무지를 출력하라. (Alias를 사용) 
-SELECT e.employee_id, e.last_name, e.salary,
-       d.department_name, d.location_id
+SELECT e.employee_id 사원번호, e.last_name 이름, e.salary 급여,
+       d.department_name 부서명, d.location_id 근무지번호
 FROM employees e, departments d
 WHERE e.department_id = d.department_id AND
       e.job_id = 'SA_MAN';
@@ -51,16 +72,8 @@ WHERE e.department_id = d.department_id AND
 SELECT e.employee_id, e.last_name,e.job_id,
        e.department_id, d.department_id,
        d.department_name, d.location_id
-FROM employees e, departments d
+FROM departments d,  employees e
 WHERE d.department_id = e.department_id(+);
-
-
---employee쪽 outer join
-SELECT e.employee_id, e.last_name,e.job_id,
-       e.department_id, d.department_id,
-       d.department_name, d.location_id
-FROM employees e, departments d
-WHERE d.department_id(+) = e.department_id;
 
 
 
