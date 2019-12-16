@@ -1,5 +1,5 @@
---ë¬¸ì œ1) EMPLOYEES í…Œì´ë¸”ê³¼ DEPARTMENTS í…Œì´ë¸”ì„ 
---Cartesian Product(ëª¨ë“  ê°€ëŠ¥í•œ í–‰ë“¤ì˜ Join)í•˜ì—¬ ì‚¬ì›ë²ˆí˜¸,ì´ë¦„,ì—…ë¬´,ë¶€ì„œë²ˆí˜¸,ë¶€ì„œëª…, ê·¼ë¬´ì§€ë¥¼ ì¶œë ¥í•˜ì—¬ë¼. 
+--¹®Á¦1) EMPLOYEES Å×ÀÌºí°ú DEPARTMENTS Å×ÀÌºíÀ» 
+--Cartesian Product(¸ğµç °¡´ÉÇÑ ÇàµéÀÇ Join)ÇÏ¿© »ç¿ø¹øÈ£,ÀÌ¸§,¾÷¹«,ºÎ¼­¹øÈ£,ºÎ¼­¸í, ±Ù¹«Áö¸¦ Ãâ·ÂÇÏ¿©¶ó. 
 
 -- Cartesian Product : Cross Join
 SELECT  e.employee_id, e.last_name, e.job_id,
@@ -8,8 +8,8 @@ SELECT  e.employee_id, e.last_name, e.job_id,
 FROM employees e, departments d;
 
 
---ë¬¸ì œ2) EMPLOYEES í…Œì´ë¸”ì—ì„œ ì‚¬ì›ë²ˆí˜¸,ì´ë¦„,ì—…ë¬´, EMPLOYEES í…Œì´ë¸”ì˜ ë¶€ì„œë²ˆí˜¸, 
---DEPARTMENTS í…Œì´ë¸”ì˜ ë¶€ì„œë²ˆí˜¸,ë¶€ì„œëª…,ê·¼ë¬´ì§€ë¥¼ ì¶œë ¥í•˜ì—¬ë¼. 
+--¹®Á¦2) EMPLOYEES Å×ÀÌºí¿¡¼­ »ç¿ø¹øÈ£,ÀÌ¸§,¾÷¹«, EMPLOYEES Å×ÀÌºíÀÇ ºÎ¼­¹øÈ£, 
+--DEPARTMENTS Å×ÀÌºíÀÇ ºÎ¼­¹øÈ£,ºÎ¼­¸í,±Ù¹«Áö¸¦ Ãâ·ÂÇÏ¿©¶ó. 
 SELECT  e.employee_id, e.last_name, e.job_id,
         e.employee_id, d.department_id,
         d.department_name, d.location_id
@@ -18,14 +18,14 @@ WHERE e.department_id = d.department_id;
 
 
 
---ë¬¸ì œ3) Alexander Hunold ì˜ ë¶€ì„œëª…ì„ ì¶œë ¥í•˜ë¼. 
+--¹®Á¦3) Alexander Hunold ÀÇ ºÎ¼­¸íÀ» Ãâ·ÂÇÏ¶ó. 
 SELECT e.first_name||' ' || e.last_name "Name", d.department_name
 FROM employees e, departments d
 WHERE e.department_id = d.department_id
     AND e.last_name='Hunold';
 
 
---ë¬¸ì œ4) ì„¸ì¼ì¦ˆ ë¶€ì„œì—ì„œ ê·¼ë¬´í•˜ê³  ìˆëŠ” ì‚¬ëŒë“¤ì„ ì¶œë ¥í•˜ë¼. 
+--¹®Á¦4) ¼¼ÀÏÁî ºÎ¼­¿¡¼­ ±Ù¹«ÇÏ°í ÀÖ´Â »ç¶÷µéÀ» Ãâ·ÂÇÏ¶ó. 
 SELECT  e.employee_id, e.last_name,
         d.department_name
 FROM employees e, departments d
@@ -33,8 +33,8 @@ WHERE e.department_id = d.department_id
       AND d.department_name = 'Sales';
 
 
---ë¬¸ì œ5) EMPLOYEES í…Œì´ë¸”ê³¼ DEPARTMENTS í…Œì´ë¸”ì˜ ë¶€ì„œë²ˆí˜¸ë¥¼ ì¡°ì¸í•˜ê³  
---SA_MAN ì‚¬ì›ë§Œì˜ ì‚¬ì›ë²ˆí˜¸,ì´ë¦„,ê¸‰ì—¬,ë¶€ì„œëª…,ê·¼ë¬´ì§€ë¥¼ ì¶œë ¥í•˜ë¼. (Aliasë¥¼ ì‚¬ìš©) 
+--¹®Á¦5) EMPLOYEES Å×ÀÌºí°ú DEPARTMENTS Å×ÀÌºíÀÇ ºÎ¼­¹øÈ£¸¦ Á¶ÀÎÇÏ°í 
+--SA_MAN »ç¿ø¸¸ÀÇ »ç¿ø¹øÈ£,ÀÌ¸§,±Ş¿©,ºÎ¼­¸í,±Ù¹«Áö¸¦ Ãâ·ÂÇÏ¶ó. (Alias¸¦ »ç¿ë) 
 SELECT e.employee_id, e.last_name, e.salary,
        d.department_name, d.location_id
 FROM employees e, departments d
@@ -43,11 +43,11 @@ WHERE e.department_id = d.department_id AND
 
 
 
---ë¬¸ì œ6) EMPLOYEES í…Œì´ë¸”ê³¼ DEPARTMENTS í…Œì´ë¸”ì—ì„œ DEPARTMENTS í…Œì´ë¸”ì— ìˆëŠ” ëª¨ë“  ìë£Œë¥¼ 
---ì‚¬ì›ë²ˆí˜¸,ì´ë¦„,ì—…ë¬´, EMPLOYEES í…Œì´ë¸”ì˜ ë¶€ì„œë²ˆ í˜¸, 
---DEPARTMENTS í…Œì´ë¸”ì˜ ë¶€ì„œë²ˆí˜¸,ë¶€ì„œëª…,ê·¼ë¬´ì§€ë¥¼ ì¶œë ¥í•˜ì—¬ë¼ (Outer Join) 
+--¹®Á¦6) EMPLOYEES Å×ÀÌºí°ú DEPARTMENTS Å×ÀÌºí¿¡¼­ DEPARTMENTS Å×ÀÌºí¿¡ ÀÖ´Â ¸ğµç ÀÚ·á¸¦ 
+--»ç¿ø¹øÈ£,ÀÌ¸§,¾÷¹«, EMPLOYEES Å×ÀÌºíÀÇ ºÎ¼­¹ø È£, 
+--DEPARTMENTS Å×ÀÌºíÀÇ ºÎ¼­¹øÈ£,ºÎ¼­¸í,±Ù¹«Áö¸¦ Ãâ·ÂÇÏ¿©¶ó (Outer Join) 
 
--- departmentìª½ outer join
+-- departmentÂÊ outer join
 SELECT e.employee_id, e.last_name,e.job_id,
        e.department_id, d.department_id,
        d.department_name, d.location_id
@@ -55,7 +55,7 @@ FROM employees e, departments d
 WHERE d.department_id = e.department_id(+);
 
 
---employeeìª½ outer join
+--employeeÂÊ outer join
 SELECT e.employee_id, e.last_name,e.job_id,
        e.department_id, d.department_id,
        d.department_name, d.location_id
@@ -64,15 +64,15 @@ WHERE d.department_id(+) = e.department_id;
 
 
 
---ë¬¸ì œ7) EMPLOYEES í…Œì´ë¸”ì—ì„œ Self joiní•˜ì—¬ ê´€ë¦¬ì(ë§¤ë‹ˆì €)ë¥¼ ì¶œë ¥í•˜ì—¬ë¼. 
+--¹®Á¦7) EMPLOYEES Å×ÀÌºí¿¡¼­ Self joinÇÏ¿© °ü¸®ÀÚ(¸Å´ÏÀú)¸¦ Ãâ·ÂÇÏ¿©¶ó. 
 SELECT a.employee_id, a.last_name,
        b.employee_id"Manager Id", b.last_name "Manager Name"
 FROM employees a, employees b
 WHERE a.manager_id = b.employee_id;
 
 
---ë¬¸ì œ8) EMPLOYEES í…Œì´ë¸”ì—ì„œ left joiní•˜ì—¬ ê´€ë¦¬ì(ë§¤ë‹ˆì €)ë¥¼ ì¶œë ¥í•˜ê³  
---ë§¤ë‹ˆì € ì•„ì´ë””ê°€ ì—†ëŠ” ì‚¬ëŒì€ ë°°ì œí•˜ê³  í•˜í–¥ì‹ìœ¼ë¡œ í•˜ë©°, ê¸‰ì—¬ëŠ” ì—­ìˆœìœ¼ë¡œ ì¶œë ¥í•˜ë¼. 
+--¹®Á¦8) EMPLOYEES Å×ÀÌºí¿¡¼­ left joinÇÏ¿© °ü¸®ÀÚ(¸Å´ÏÀú)¸¦ Ãâ·ÂÇÏ°í 
+--¸Å´ÏÀú ¾ÆÀÌµğ°¡ ¾ø´Â »ç¶÷Àº ¹èÁ¦ÇÏ°í ÇÏÇâ½ÄÀ¸·Î ÇÏ¸ç, ±Ş¿©´Â ¿ª¼øÀ¸·Î Ãâ·ÂÇÏ¶ó. 
 
 SELECT a.employee_id, a.first_name||' '||a.last_name,
        a.manager_id, b.employee_id, 
@@ -87,8 +87,8 @@ ORDER BY salary DESC;
 
 
 
---ë¬¸ì œ9) EMPLOYEES í…Œì´ë¸”ì—ì„œ right joiní•˜ì—¬ 
---ê´€ë¦¬ì(ë§¤ë‹ˆì €)ê°€ 108ë²ˆ ìƒí–¥ì‹ìœ¼ë¡œ ê¸‰ì—¬ëŠ” ì—­ìˆœìœ¼ë¡œ ì¶œë ¥í•˜ë¼. 
+--¹®Á¦9) EMPLOYEES Å×ÀÌºí¿¡¼­ right joinÇÏ¿© 
+--°ü¸®ÀÚ(¸Å´ÏÀú)°¡ 108¹ø »óÇâ½ÄÀ¸·Î ±Ş¿©´Â ¿ª¼øÀ¸·Î Ãâ·ÂÇÏ¶ó. 
 
 SELECT a.employee_id, a.last_name,a.manager_id,
        b.employee_id, b.last_name, a.salary 

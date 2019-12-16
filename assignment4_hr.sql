@@ -1,78 +1,80 @@
--- ë¬¸ì œ1) EMPLOYEES í…Œì´ë¸”ì—ì„œ Kingì˜ ì •ë³´ë¥¼ ì†Œë¬¸ìžë¡œ ê²€ìƒ‰í•˜ê³  
--- ì‚¬ì›ë²ˆí˜¸,ì„±ëª…, ë‹´ë‹¹ì—…ë¬´(ì†Œë¬¸ìžë¡œ),ë¶€ì„œë²ˆí˜¸ë¥¼ ì¶œë ¥í•˜ë¼.
+-- ¹®Á¦1) EMPLOYEES Å×ÀÌºí¿¡¼­ KingÀÇ Á¤º¸¸¦ ¼Ò¹®ÀÚ·Î °Ë»öÇÏ°í 
+-- »ç¿ø¹øÈ£,¼º¸í, ´ã´ç¾÷¹«(¼Ò¹®ÀÚ·Î),ºÎ¼­¹øÈ£¸¦ Ãâ·ÂÇÏ¶ó.
 
--- LOWER í•¨ìˆ˜ ì‚¬ìš©í•˜ê¸° 
+-- LOWER ÇÔ¼ö »ç¿ëÇÏ±â 
 SELECT employee_id, last_name, Lower(job_id), department_id
 FROM employees
 WHERE LOWER(last_name) = 'king';
 
 
---ë¬¸ì œ2) EMPLOYEES í…Œì´ë¸”ì—ì„œ Kingì˜ ì •ë³´ë¥¼ ëŒ€ë¬¸ìžë¡œ ê²€ìƒ‰í•˜ê³ 
---ì‚¬ì›ë²ˆí˜¸,ì„±ëª…, ë‹´ë‹¹ì—…ë¬´(ëŒ€ë¬¸ìžë¡œ),ë¶€ì„œë²ˆí˜¸ë¥¼ ì¶œë ¥í•˜ë¼.
 
--- UPPER í•¨ìˆ˜ ì‚¬ìš©í•˜ê¸° 
-SELECT employee_id, last_name, UPPER(job_id), department_id
+
+--¹®Á¦2) EMPLOYEES Å×ÀÌºí¿¡¼­ KingÀÇ Á¤º¸¸¦ ´ë¹®ÀÚ·Î °Ë»öÇÏ°í
+--»ç¿ø¹øÈ£,¼º¸í, ´ã´ç¾÷¹«(´ë¹®ÀÚ·Î),ºÎ¼­¹øÈ£¸¦ Ãâ·ÂÇÏ¶ó.
+
+-- UPPER ÇÔ¼ö »ç¿ëÇÏ±â 
+SELECT employee_id, last_name, first_name, UPPER(job_id), department_id
 FROM employees
 WHERE UPPER(last_name) = 'KING';
 
 
 
--- ë¬¸ì œ3) DEPARTMENTS í…Œì´ë¸”ì—ì„œ ë¶€ì„œë²ˆí˜¸ì™€ ë¶€ì„œì´ë¦„, ë¶€ì„œì´ë¦„ê³¼ ìœ„ì¹˜ë²ˆí˜¸ë¥¼ í•©í•˜ì—¬ ì¶œë ¥í•˜ë„ë¡ í•˜ë¼.
--- concat í•¨ìˆ˜
+-- ¹®Á¦3) DEPARTMENTS Å×ÀÌºí¿¡¼­ ºÎ¼­¹øÈ£¿Í ºÎ¼­ÀÌ¸§, ºÎ¼­ÀÌ¸§°ú À§Ä¡¹øÈ£¸¦ ÇÕÇÏ¿© Ãâ·ÂÇÏµµ·Ï ÇÏ¶ó.
+
+-- concat ÇÔ¼ö ¶Ç´Â || ¿¬»ê»ç¿ë
 SELECT department_id, department_name, 
         CONCAT(department_id,department_name),
         CONCAT(department_name,location_id)
 FROM departments;
 
 
-
--- ë¬¸ì œ4) EMPLOYEES í…Œì´ë¸”ì—ì„œ ì´ë¦„ì˜ ì²« ê¸€ìžê°€ â€˜Kâ€™ ë³´ë‹¤ í¬ê³  â€˜Yâ€™ë³´ë‹¤ ì ì€ì‚¬ì›ì˜ ì •ë³´ë¥¼ 
--- ì‚¬ì›ë²ˆí˜¸, ì´ë¦„, ì—…ë¬´, ê¸‰ì—¬, ë¶€ì„œë²ˆí˜¸ë¥¼ ì¶œë ¥í•˜ë¼. ë‹¨ ì´ë¦„ìˆœìœ¼ë¡œ ì •ë ¬í•˜ì—¬ë¼.
+-- ¹®Á¦4) EMPLOYEES Å×ÀÌºí¿¡¼­ ÀÌ¸§ÀÇ Ã¹ ±ÛÀÚ°¡ ¡®K¡¯ º¸´Ù Å©°í ¡®Y¡¯º¸´Ù ÀûÀº»ç¿øÀÇ Á¤º¸¸¦ 
+-- »ç¿ø¹øÈ£, ÀÌ¸§, ¾÷¹«, ±Þ¿©, ºÎ¼­¹øÈ£¸¦ Ãâ·ÂÇÏ¶ó. ´Ü ÀÌ¸§¼øÀ¸·Î Á¤·ÄÇÏ¿©¶ó.
 
 --SUBSTR
-SELECT employee_id, last_name, job_id, salary, department_id
+SELECT employee_id, first_name, job_id, salary, department_id
 FROM employees
-WHERE SUBSTR(last_name,1,1) > 'K'
-      AND SUBSTR(last_name,1,1) < 'Y'
-ORDER BY last_name ASC;
+WHERE SUBSTR(first_name,1,1) > 'K'
+      AND SUBSTR(first_name,1,1) < 'Y'
+ORDER BY first_name ASC;
 
 
 
--- ë¬¸ì œ5) EMPLOYEES í…Œì´ë¸”ì—ì„œ 20ë²ˆ ë¶€ì„œ ì¤‘ ì´ë¦„ì˜ ê¸¸ì´ ë° ê¸‰ì—¬ì˜ ìžë¦¿ìˆ˜ë¥¼
---ì‚¬ì›ë²ˆí˜¸, ì´ë¦„, ì´ë¦„ì˜ ìžë¦¿ìˆ˜, ê¸‰ì—¬, ê¸‰ì—¬ì˜ ìžë¦¿ìˆ˜ë¥¼ ì¶œë ¥í•˜ë¼.
 
+-- ¹®Á¦5) EMPLOYEES Å×ÀÌºí¿¡¼­ 20¹ø ºÎ¼­ Áß ÀÌ¸§ÀÇ ±æÀÌ ¹× ±Þ¿©ÀÇ ÀÚ¸´¼ö¸¦
+--»ç¿ø¹øÈ£, ÀÌ¸§, ÀÌ¸§ÀÇ ÀÚ¸´¼ö, ±Þ¿©, ±Þ¿©ÀÇ ÀÚ¸´¼ö¸¦ Ãâ·ÂÇÏ¶ó.
 
---
-SELECT employee_id, last_name, length(last_name), salary, length(salary)
+-- Length »ç¿ë
+SELECT employee_id, first_name, length(first_name)"ÀÌ¸§ÀÇ ÀÚ¸´¼ö", salary, length(salary)"±Þ¿©ÀÇ ÀÚ¸´¼ö"
 FROM employees
 WHERE department_id = 20;
 
 
 
--- ë¬¸ì œ6) EMPLOYEES í…Œì´ë¸”ì—ì„œ ì´ë¦„ ì¤‘ â€˜eâ€™ìžì˜ ìœ„ì¹˜ë¥¼ ì¶œë ¥í•˜ë¼.
+-- ¹®Á¦6) EMPLOYEES Å×ÀÌºí¿¡¼­ ÀÌ¸§ Áß ¡®e¡¯ÀÚÀÇ À§Ä¡¸¦ Ãâ·ÂÇÏ¶ó.
 
--- INSTR(ë¬¸ìžì—´, ì°¾ì„ë¬¸ìž,në²ˆì§¸ì´í›„ë¶€í„°ì°¾ê¸°,më²ˆì§¸ì°¾ì€ë¬¸ìžì˜ìœ„ì¹˜)
+-- INSTR(¹®ÀÚ¿­, Ã£À»¹®ÀÚ,n¹øÂ°ÀÌÈÄºÎÅÍÃ£±â,m¹øÂ°Ã£Àº¹®ÀÚÀÇÀ§Ä¡)
 SELECT first_name,
-        INSTR(first_name, 'e',1,1) as e_1,
-        INSTR(first_name, 'e',1,2) as e_2,
-        INSTR(first_name, 'e',1,3) as e_3
+        INSTR( lower(first_name) , 'e',1,1) as e_1,
+        INSTR( lower(first_name) , 'e',1,2) as e_2,
+        INSTR( lower(first_name) , 'e',1,3) as e_3
 FROM employees;
 
 
 
 
--- ë¬¸ì œ7) ë‹¤ìŒì˜ ì¿¼ë¦¬ë¥¼ ì‹¤í–‰í•˜ê³  ê²°ê³¼ë¥¼ ë¶„ì„í•˜ë¼.
+-- ¹®Á¦7) ´ÙÀ½ÀÇ Äõ¸®¸¦ ½ÇÇàÇÏ°í °á°ú¸¦ ºÐ¼®ÇÏ¶ó.
 
 SELECT ROUND(4567.678),ROUND(4567.678,0),
 ROUND(4567.678,2),ROUND(4567.678,-2)
 FROM dual;
--- ROUND(ìˆ«ìž):ì†Œìˆ˜ì  ì²«ì§¸ìžë¦¬ì—ì„œ ë°˜ì˜¬ë¦¼
--- ROUND(ìˆ«ìž, ì–‘ìˆ˜): ì–‘ìˆ˜ë§Œí¼ì˜ ì†Œìˆ˜ì ë§Œ ë°˜í™˜
--- ROUND(ìˆ«ìž, ìŒìˆ˜): ìŒìˆ˜ì˜ ì ˆëŒ€ê°’ë§Œí¼ ì–‘ì˜ì •ìˆ˜ìžë¦¬ë¡œ ì™€ì„œ ë°˜ì˜¬ë¦¼
+-- ROUND(¼ýÀÚ):¼Ò¼öÁ¡ Ã¹Â°ÀÚ¸®¿¡¼­ ¹Ý¿Ã¸²
+-- ROUND(¼ýÀÚ, ¾ç¼ö): ¾ç¼ö¸¸Å­ÀÇ ¼Ò¼öÁ¡¸¸ ¹ÝÈ¯
+-- ROUND(¼ýÀÚ, À½¼ö): À½¼öÀÇ Àý´ë°ª¸¸Å­ ¾çÀÇÁ¤¼öÀÚ¸®·Î ¿Í¼­ ¹Ý¿Ã¸²
 
 
 
---ë¬¸ì œ8) EMPLOYEES í…Œì´ë¸”ì—ì„œ ë¶€ì„œë²ˆí˜¸ê°€ 80ì¸ ì‚¬ëžŒì˜ ê¸‰ì—¬ë¥¼ 30ìœ¼ë¡œ ë‚˜ëˆˆ ë‚˜ë¨¸ì§€ë¥¼ êµ¬í•˜ì—¬ ì¶œë ¥í•˜ë¼.
+--¹®Á¦8) EMPLOYEES Å×ÀÌºí¿¡¼­ ºÎ¼­¹øÈ£°¡ 80ÀÎ »ç¶÷ÀÇ ±Þ¿©¸¦ 30À¸·Î ³ª´« ³ª¸ÓÁö¸¦ ±¸ÇÏ¿© Ãâ·ÂÇÏ¶ó.
 
 --MOD
 SELECT salary, MOD(salary,30), department_id
@@ -81,60 +83,61 @@ WHERE department_id = 80;
 
 
 
--- ë¬¸ì œ9) EMPLOYEES í…Œì´ë¸”ì—ì„œ 30ë²ˆ ë¶€ì„œ ì¤‘ ì´ë¦„ê³¼ ë‹´ë‹¹ ì—…ë¬´ë¥¼ ì—°ê²°í•˜ì—¬ ì¶œë ¥í•˜ì—¬ë¼. 
--- ë‹¨ ë‹´ë‹¹ ì—…ë¬´ë¥¼ í•œ ì¤„ ì•„ëž˜ë¡œ ì¶œë ¥í•˜ë¼.
--- ( ë³´ì´ê¸°ì—” í•œì¤„ì²˜ëŸ¼ ë³´ì´ì§€ë§Œ ê·¸ë¦¬ë“œë¥¼ ë”ë¸” í´ë¦­í•˜ë©´ ê°œí–‰ ë˜ì—ˆë‹¤ëŠ” ê²ƒì„ í™•ì¸í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.)
+-- ¹®Á¦9) EMPLOYEES Å×ÀÌºí¿¡¼­ 30¹ø ºÎ¼­ Áß ÀÌ¸§°ú ´ã´ç ¾÷¹«¸¦ ¿¬°áÇÏ¿© Ãâ·ÂÇÏ¿©¶ó. 
+-- ´Ü ´ã´ç ¾÷¹«¸¦ ÇÑ ÁÙ ¾Æ·¡·Î Ãâ·ÂÇÏ¶ó.
+-- ( º¸ÀÌ±â¿£ ÇÑÁÙÃ³·³ º¸ÀÌÁö¸¸ ±×¸®µå¸¦ ´õºí Å¬¸¯ÇÏ¸é °³Çà µÇ¾ú´Ù´Â °ÍÀ» È®ÀÎÇÒ ¼ö ÀÖ½À´Ï´Ù.)
 
--- CHR(10) : ë¼ì¸ í”¼íŠ¸(new line), ê°œí–‰   
--- *ì°¸ê³ : CHR(13) : ìºë¦¬ì§€ ë¦¬í„´ : í˜„ìž¬ ì»¤ì„œë¥¼ ìœ„ì¹˜í•œ ì¤„ì˜ ë§¨ì•žìœ¼ë¡œ ë³´ëƒ„
+-- CHR(10) : ¶óÀÎ ÇÇÆ®(new line), °³Çà   
+-- *Âü°í: CHR(13) : Ä³¸®Áö ¸®ÅÏ : ÇöÀç Ä¿¼­¸¦ À§Ä¡ÇÑ ÁÙÀÇ ¸Ç¾ÕÀ¸·Î º¸³¿
 SELECT employee_id,last_name || CHR(10)|| job_id
 FROM employees
 WHERE department_id = 30;
 
 
 
--- ë¬¸ì œ10) EMPLOYEES í…Œì´ë¸”ì—ì„œ í˜„ìž¬ê¹Œì§€ ê·¼ë¬´ì¼ ìˆ˜ê°€ ëª‡ì£¼ ëª‡ì¼ ì¸ê°€ë¥¼ ì¶œë ¥í•˜ì—¬ë¼. 
--- ë‹¨ ê·¼ë¬´ ì¼ìˆ˜ê°€ ë§Žì€ ì‚¬ëžŒ ìˆœìœ¼ë¡œ ì¶œë ¥í•˜ì—¬ë¼.
+-- ¹®Á¦10) EMPLOYEES Å×ÀÌºí¿¡¼­ ÇöÀç±îÁö ±Ù¹«ÀÏ ¼ö°¡ ¸îÁÖ ¸îÀÏ ÀÎ°¡¸¦ Ãâ·ÂÇÏ¿©¶ó. 
+-- ´Ü ±Ù¹« ÀÏ¼ö°¡ ¸¹Àº »ç¶÷ ¼øÀ¸·Î Ãâ·ÂÇÏ¿©¶ó.
 
 SELECT  last_name, hire_date, sysdate,
         TRUNC(sysdate - hire_date) as "Total days", 
-        TRUNC((sysdate - hire_date) / 7) as weeks
+        TRUNC((sysdate - hire_date) / 7) as weeks,
+        mod( (TO_DATE('19/12/01') - hire_date), 7) "³²Àº ³¯ ¼ö"
 FROM employees
 ORDER by "Total days" DESC;
 
 
 
--- ë¬¸ì œ11) EMPLOYEES í…Œì´ë¸”ì—ì„œ ë¶€ì„œ 50ì—ì„œ ê¸‰ì—¬ ì•žì— $ë¥¼ ì‚½ìž…í•˜ê³  3ìžë¦¬ë§ˆë‹¤ ,ë¥¼ ì¶œë ¥í•˜ë¼
+-- ¹®Á¦11) EMPLOYEES Å×ÀÌºí¿¡¼­ ºÎ¼­ 50¿¡¼­ ±Þ¿© ¾Õ¿¡ $¸¦ »ðÀÔÇÏ°í 3ÀÚ¸®¸¶´Ù ,¸¦ Ãâ·ÂÇÏ¶ó
 
 --TO_CHAR
-SELECT TO_CHAR(salary, '$999,999,999')
+SELECT first_name, department_id, salary,TO_CHAR(salary, '$999,999,999')
 FROM employees
 WHERE department_id = 50;
 
 
---ë¬¸ì œ12) ë‹¤ìŒì˜ ê²°ê³¼ë¥¼ ë¶„ì„í•˜ì—¬ ë³´ì•„ë¼.
+--¹®Á¦12) ´ÙÀ½ÀÇ °á°ú¸¦ ºÐ¼®ÇÏ¿© º¸¾Æ¶ó.
 
 SELECT  EMPLOYEE_ID,LAST_NAME,JOB_ID,SALARY,
-        DECODE(JOB_ID,  'IT_PROC',SALARY*1.1,
+        DECODE (JOB_ID,  'IT_PROC',SALARY*1.1,
                         'ST_MAN', SALARY*1.15,
                         'SA_MAN', SALARY*1.2, 
                          SALARY) d_sal
 FROM EMPLOYEES
 ORDER BY SALARY DESC;
--- decode(): if-elseê³¼ ë¹„ìŠ·í•œ ì¡°ê±´ë¬¸
+-- decode(): if-else°ú ºñ½ÁÇÑ Á¶°Ç¹®
 -- DECODE(JOB_ID,'IT_PROC',SALARY*1.1,'ST_MAN', SALARY*1.15,'SA_MAN', SALARY*1.2, SALARY)
--- ì¡°ê±´1:JOB_ID ='IT_PROC' ì¼ë•Œ SALARY*1.1
--- ì¡°ê±´2:JOB_ID ='ST_MAN' ì¼ë•Œ SALARY*1.15.....
--- ë§ˆì§€ë§‰ ì¡°ê±´: ê·¸ ë‚˜ë¨¸ì§€ ì¼ë•ŒëŠ” SALARY ì¶œë ¥
+-- Á¶°Ç1:JOB_ID ='IT_PROC' ÀÏ¶§ SALARY*1.1
+-- Á¶°Ç2:JOB_ID ='ST_MAN' ÀÏ¶§ SALARY*1.15.....
+-- ¸¶Áö¸· Á¶°Ç: ±× ³ª¸ÓÁö ÀÏ¶§´Â SALARY Ãâ·Â
 
--- Employees í…Œì´ë¸”ì—ì„œ ì‚¬ì›ë²ˆí˜¸, ì´ë¦„, ì—…ë¬´, ê¸‰ì—¬, ì—…ë¬´ì— ë”°ë¥¸ d_sal ì¶œë ¥í•˜ë˜, ê¸‰ì—¬ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬
-
-
+-- Employees Å×ÀÌºí¿¡¼­ »ç¿ø¹øÈ£, ÀÌ¸§, ¾÷¹«, ±Þ¿©, ¾÷¹«¿¡ µû¸¥ d_sal Ãâ·ÂÇÏµÇ, ±Þ¿©¸¦ ±âÁØÀ¸·Î ³»¸²Â÷¼ø Á¤·Ä
 
 
--- ê·¸ë£¹í•¨ìˆ˜
---ë¬¸ì œ1) EMPLOYEES í…Œì´ë¸”ì—ì„œ ëª¨ë“  SALESMAN(SA_MAN)ì— ëŒ€í•˜ì—¬ ê¸‰ì—¬ì˜
---í‰ê· , ìµœê³ ì•¡, ìµœì €ì•¡, í•©ê³„ë¥¼ êµ¬í•˜ì—¬ ì¶œë ¥í•˜ì—¬ë¼.
+
+
+-- ±×·ìÇÔ¼ö
+--¹®Á¦1) EMPLOYEES Å×ÀÌºí¿¡¼­ ¸ðµç SALESMAN(SA_MAN)¿¡ ´ëÇÏ¿© ±Þ¿©ÀÇ
+--Æò±Õ, ÃÖ°í¾×, ÃÖÀú¾×, ÇÕ°è¸¦ ±¸ÇÏ¿© Ãâ·ÂÇÏ¿©¶ó.
 
 SELECT AVG(salary), MAX(salary), MIN(salary), SUM(salary)
 FROM employees
@@ -142,25 +145,25 @@ WHERE job_id = 'SA_MAN';
     
 
 
--- ë¬¸ì œ2) EMPLOYEES í…Œì´ë¸”ì— ë“±ë¡ë˜ì–´ ìžˆëŠ” ì¸ì›ìˆ˜, ë³´ë„ˆìŠ¤ê°€ NULLì´ ì•„ë‹Œ
--- ì¸ì›ìˆ˜, ë³´ë„ˆìŠ¤ì˜ í‰ê· , ë“±ë¡ë˜ì–´ ìžˆëŠ” ë¶€ì„œì˜ ìˆ˜ë¥¼ êµ¬í•˜ì—¬ ì¶œë ¥í•˜ë¼.
+-- ¹®Á¦2) EMPLOYEES Å×ÀÌºí¿¡ µî·ÏµÇ¾î ÀÖ´Â ÀÎ¿ø¼ö, º¸³Ê½º°¡ NULLÀÌ ¾Æ´Ñ
+-- ÀÎ¿ø¼ö, º¸³Ê½ºÀÇ Æò±Õ, µî·ÏµÇ¾î ÀÖ´Â ºÎ¼­ÀÇ ¼ö¸¦ ±¸ÇÏ¿© Ãâ·ÂÇÏ¶ó.
 
 
-SELECT  COUNT(last_name) as ì¸ì›ìˆ˜, 
-        COUNT(commission_pct) ë³´ë„ˆìŠ¤ìˆ˜,
-        AVG(commission_pct) "ë³´ë„ˆìŠ¤ì˜ í‰ê· ",
-        COUNT(DISTINCT department_id) "ë¶€ì„œì˜ ìˆ˜"
+SELECT  COUNT(last_name) as ÀÎ¿ø¼ö, 
+        COUNT(commission_pct) º¸³Ê½º¼ö,
+        AVG(commission_pct) "º¸³Ê½ºÀÇ Æò±Õ",
+        COUNT(DISTINCT department_id) "ºÎ¼­ÀÇ ¼ö"
 FROM employees;
 
+                                                                                                                                                                                     
 
 
 
 
 
+-- ¹®Á¦3) EMPLOYEES Å×ÀÌºí¿¡¼­ ºÎ¼­º°·Î ÀÎ¿ø¼ö, Æò±Õ ±Þ¿©, ÃÖÀú±Þ¿©, ÃÖ°í±Þ¿©, ±Þ¿©ÀÇ ÇÕÀ» ±¸ÇÏ¿© Ãâ·ÂÇÏ¶ó.
 
--- ë¬¸ì œ3) EMPLOYEES í…Œì´ë¸”ì—ì„œ ë¶€ì„œë³„ë¡œ ì¸ì›ìˆ˜, í‰ê·  ê¸‰ì—¬, ìµœì €ê¸‰ì—¬, ìµœê³ ê¸‰ì—¬, ê¸‰ì—¬ì˜ í•©ì„ êµ¬í•˜ì—¬ ì¶œë ¥í•˜ë¼.
-
-SELECT department_id,COUNT(salary) ì¸ì›ìˆ˜, AVG(salary) í‰ê· ê¸‰ì—¬, 
+SELECT department_id,COUNT(salary) ÀÎ¿ø¼ö, AVG(salary) Æò±Õ±Þ¿©, 
         MIN(salary), MAX(salary), SUM(salary)
 FROM employees
 GROUP BY department_id;
@@ -168,19 +171,19 @@ GROUP BY department_id;
 
 
 
--- ë¬¸ì œ4) EMPLOYEES í…Œì´ë¸”ì—ì„œ ê° ë¶€ì„œë³„ë¡œ ì¸ì›ìˆ˜,ê¸‰ì—¬ì˜ í‰ê· , ìµœì € ê¸‰ì—¬,
--- ìµœê³  ê¸‰ì—¬, ê¸‰ì—¬ì˜ í•©ì„ êµ¬í•˜ì—¬ ê¸‰ì—¬ì˜ í•©ì´ ë§Žì€ ìˆœìœ¼ë¡œ ì¶œë ¥í•˜ì—¬ë¼.
-SELECT department_id,COUNT(salary) ì¸ì›ìˆ˜, AVG(salary) í‰ê· ê¸‰ì—¬, 
+-- ¹®Á¦4) EMPLOYEES Å×ÀÌºí¿¡¼­ °¢ ºÎ¼­º°·Î ÀÎ¿ø¼ö,±Þ¿©ÀÇ Æò±Õ, ÃÖÀú ±Þ¿©,
+-- ÃÖ°í ±Þ¿©, ±Þ¿©ÀÇ ÇÕÀ» ±¸ÇÏ¿© ±Þ¿©ÀÇ ÇÕÀÌ ¸¹Àº ¼øÀ¸·Î Ãâ·ÂÇÏ¿©¶ó.
+SELECT department_id,COUNT(salary) ÀÎ¿ø¼ö, AVG(salary) Æò±Õ±Þ¿©, 
         MIN(salary), MAX(salary), SUM(salary)
 FROM employees
 GROUP BY department_id
 ORDER BY SUM(salary) DESC;
 
 
--- ë¬¸ì œ5) EMPLOYEES í…Œì´ë¸”ì—ì„œ ë¶€ì„œë³„, ì—…ë¬´ë³„ ê·¸ë£¹í•˜ì—¬ ê²°ê³¼ë¥¼ 
--- ë¶€ì„œë²ˆí˜¸, ì—…ë¬´, ì¸ì›ìˆ˜, ê¸‰ì—¬ì˜ í‰ê· , ê¸‰ì—¬ì˜ í•©ì„ êµ¬í•˜ì—¬ ì¶œë ¥í•˜ì—¬ë¼.
+-- ¹®Á¦5) EMPLOYEES Å×ÀÌºí¿¡¼­ ºÎ¼­º°, ¾÷¹«º° ±×·ìÇÏ¿© °á°ú¸¦ 
+-- ºÎ¼­¹øÈ£, ¾÷¹«, ÀÎ¿ø¼ö, ±Þ¿©ÀÇ Æò±Õ, ±Þ¿©ÀÇ ÇÕÀ» ±¸ÇÏ¿© Ãâ·ÂÇÏ¿©¶ó.
 
--- GROUTP BYëŠ” 2ê°€ì§€ ì´ìƒì˜ ì¡°ê±´ìœ¼ë¡œë„ ë¬¶ì„ ìˆ˜ ìžˆë‹¤.
+-- GROUTP BY´Â 2°¡Áö ÀÌ»óÀÇ Á¶°ÇÀ¸·Îµµ ¹­À» ¼ö ÀÖ´Ù.
 SELECT department_id,job_id, count(*),
         AVG(salary), SUM(salary)
 FROM employees
@@ -189,11 +192,11 @@ GROUP BY department_id, job_id;
 
 
 
--- ë¬¸ì œ6) EMPLOYEES í…Œì´ë¸”ì—ì„œ ë¶€ì„œ ì¸ì›ì´ 4ëª…ë³´ë‹¤ ë§Žì€ ë¶€ì„œì˜ 
--- ë¶€ì„œë²ˆí˜¸,ì¸ì›ìˆ˜, ê¸‰ì—¬ì˜ í•©ì„ êµ¬í•˜ì—¬ ì¶œë ¥í•˜ì—¬ë¼.(GROUP BY, HAVING)
+-- ¹®Á¦6) EMPLOYEES Å×ÀÌºí¿¡¼­ ºÎ¼­ ÀÎ¿øÀÌ 4¸íº¸´Ù ¸¹Àº ºÎ¼­ÀÇ 
+-- ºÎ¼­¹øÈ£,ÀÎ¿ø¼ö, ±Þ¿©ÀÇ ÇÕÀ» ±¸ÇÏ¿© Ãâ·ÂÇÏ¿©¶ó.(GROUP BY, HAVING)
 
 SELECT department_id, COUNT(*), SUM(salary)
-FROM employees
+FROM employees 
 GROUP BY department_id
 HAVING COUNT(*)>4;
 
@@ -201,8 +204,8 @@ HAVING COUNT(*)>4;
 
 
 
--- ë¬¸ì œ7) EMPLOYEES í…Œì´ë¸”ì—ì„œ ê¸‰ì—¬ê°€ ìµœëŒ€ 10000ì´ìƒì¸ ë¶€ì„œì— ëŒ€í•´ì„œ 
--- ë¶€ì„œë²ˆí˜¸, í‰ê·  ê¸‰ì—¬, ê¸‰ì—¬ì˜ í•©ì„ êµ¬í•˜ì—¬ ì¶œë ¥í•˜ì—¬ë¼.
+-- ¹®Á¦7) EMPLOYEES Å×ÀÌºí¿¡¼­ ±Þ¿©°¡ ÃÖ´ë 10000ÀÌ»óÀÎ ºÎ¼­¿¡ ´ëÇØ¼­ 
+-- ºÎ¼­¹øÈ£, Æò±Õ ±Þ¿©, ±Þ¿©ÀÇ ÇÕÀ» ±¸ÇÏ¿© Ãâ·ÂÇÏ¿©¶ó.
 
 SELECT department_id, AVG(salary), SUM(salary)
 FROM employees
@@ -212,25 +215,25 @@ HAVING MAX(salary) > 10000;
 
 
 
--- ë¬¸ì œ8) EMPLOYEES í…Œì´ë¸”ì—ì„œ ì—…ë¬´ë³„ ê¸‰ì—¬ì˜ í‰ê· ì´ 10000 ì´ìƒì¸ ì—…ë¬´ì— ëŒ€í•´ì„œ 
--- ì—…ë¬´ëª…,í‰ê·  ê¸‰ì—¬, ê¸‰ì—¬ì˜ í•©ì„ êµ¬í•˜ì—¬ ì¶œë ¥í•˜ë¼.
+-- ¹®Á¦8) EMPLOYEES Å×ÀÌºí¿¡¼­ ¾÷¹«º° ±Þ¿©ÀÇ Æò±ÕÀÌ 10000 ÀÌ»óÀÎ ¾÷¹«¿¡ ´ëÇØ¼­ 
+-- ¾÷¹«¸í,Æò±Õ ±Þ¿©, ±Þ¿©ÀÇ ÇÕÀ» ±¸ÇÏ¿© Ãâ·ÂÇÏ¶ó.
 
 SELECT job_id, AVG(salary), SUM(salary)
 FROM employees
 GROUP BY job_id
-HAVING AVG(salary) > 10000;
+HAVING AVG(salary) >= 10000;
 
 
 
---ë¬¸ì œ9) EMPLOYEES í…Œì´ë¸”ì—ì„œ ì „ì²´ ì›”ê¸‰ì´ 10000ì„ ì´ˆê³¼í•˜ëŠ” ê° ì—…ë¬´ì— ëŒ€í•´ì„œ 
--- ì—…ë¬´ì™€ ì›”ê¸‰ì—¬ í•©ê³„ë¥¼ ì¶œë ¥í•˜ë¼. ë‹¨ íŒë§¤ì›ì€ ì œì™¸í•˜ê³  ì›” ê¸‰ì—¬ í•©ê³„ë¡œ ì •ë ¬(ë‚´ë¦¼ì°¨ìˆœ)í•˜ë¼.(SA_)
+--¹®Á¦9) EMPLOYEES Å×ÀÌºí¿¡¼­ ÀüÃ¼ ¿ù±ÞÀÌ 10000À» ÃÊ°úÇÏ´Â °¢ ¾÷¹«¿¡ ´ëÇØ¼­ 
+-- ¾÷¹«¿Í ¿ù±Þ¿© ÇÕ°è¸¦ Ãâ·ÂÇÏ¶ó. ´Ü ÆÇ¸Å¿øÀº Á¦¿ÜÇÏ°í ¿ù ±Þ¿© ÇÕ°è·Î Á¤·Ä(³»¸²Â÷¼ø)ÇÏ¶ó.(SA_)
 
 
 SELECT job_id, SUM(salary)
 FROM employees
+WHERE job_id NOT LIKE 'SA%'
 GROUP BY job_id
 HAVING SUM(salary)>10000
 ORDER BY SUM(salary) DESC;
-
 
 

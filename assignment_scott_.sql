@@ -1,30 +1,35 @@
 -- SCOTT
---23) empí…Œì´ë¸”ì˜ ì—…ë¬´(job)ì„ ì²«ê¸€ìžëŠ” ëŒ€ë¬¸ìž ë‚˜ë¨¸ì§€ëŠ” ì†Œë¬¸ìžë¡œ ì¶œë ¥í•˜ì‹œì˜¤.
+--23) empÅ×ÀÌºíÀÇ ¾÷¹«(job)À» Ã¹±ÛÀÚ´Â ´ë¹®ÀÚ ³ª¸ÓÁö´Â ¼Ò¹®ÀÚ·Î Ãâ·ÂÇÏ½Ã¿À.
 
 select concat( substr(job,1,1), LOWER(substr(job, 2)))
 from emp;
 
+-- INITCAP : ¸Ç ¾ÕÀÇ Ã¶ÀÚ¸¸ ´ë¹®ÀÚ·Î ¸¸µé°í ³ª¸ÓÁö´Â ¼Ò¹®ÀÚ
+SELECT INITCAP(Job)
+FROM emp;
 
---24) empí…Œì´ë¸”ì—ì„œ ì‚¬ì›ì´ë¦„ ì¤‘ Aê°€ í¬í•¨ëœ ì‚¬ì›ì´ë¦„ì„ êµ¬í•˜ê³  
--- ê·¸ ì´ë¦„ ì¤‘ ì•žì—ì„œ 3ìžë§Œ ì¶”ì¶œí•˜ì—¬ ì¶œë ¥
 
-SELECT SUBSTR(ename,1,3) 
+
+--24) empÅ×ÀÌºí¿¡¼­ »ç¿øÀÌ¸§ Áß A°¡ Æ÷ÇÔµÈ »ç¿øÀÌ¸§À» ±¸ÇÏ°í 
+-- ±× ÀÌ¸§ Áß ¾Õ¿¡¼­ 3ÀÚ¸¸ ÃßÃâÇÏ¿© Ãâ·Â
+
+SELECT ename, SUBSTR(ename,1,3) 
 FROM emp
 WHERE ename LIKE '%A%';
 
 
 
---25) ì´ë¦„ì˜ ì„¸ë²ˆì§¸ ë¬¸ìžê°€ Aì¸ ëª¨ë“  ì‚¬ì›ì˜ ì´ë¦„ì„ í‘œì‹œí•˜ì‹œì˜¤.
+--25) ÀÌ¸§ÀÇ ¼¼¹øÂ° ¹®ÀÚ°¡ AÀÎ ¸ðµç »ç¿øÀÇ ÀÌ¸§À» Ç¥½ÃÇÏ½Ã¿À.
 SELECT ename
 FROM emp
 WHERE ename LIKE '__A%';
 
 
 
---26) ì´ë¦„ì´ J,A ë˜ëŠ” Mìœ¼ë¡œ ì‹œìž‘í•˜ëŠ” ëª¨ë“  ì‚¬ì›ì˜ ì´ë¦„
--- (ì²« ê¸€ìžëŠ” ëŒ€ë¬¸ìžë¡œ, ë‚˜ë¨¸ì§€ ê¸€ìžëŠ” ì†Œë¬¸ìžë¡œ í‘œì‹œ) 
--- ë° ì´ë¦„ì˜ ê¸¸ì´ë¥¼ í‘œì‹œí•˜ì‹œì˜¤.(ì—´ ë ˆì´ë¸”ì€ nameê³¼ lengthë¡œ í‘œì‹œ)   
-SELECT SUBSTR(ename,1,1)|| LOWER(SUBSTR(ename,2)), length(ename)
+--26) ÀÌ¸§ÀÌ J,A ¶Ç´Â MÀ¸·Î ½ÃÀÛÇÏ´Â ¸ðµç »ç¿øÀÇ ÀÌ¸§
+-- (Ã¹ ±ÛÀÚ´Â ´ë¹®ÀÚ·Î, ³ª¸ÓÁö ±ÛÀÚ´Â ¼Ò¹®ÀÚ·Î Ç¥½Ã) 
+-- ¹× ÀÌ¸§ÀÇ ±æÀÌ¸¦ Ç¥½ÃÇÏ½Ã¿À.(¿­ ·¹ÀÌºíÀº name°ú length·Î Ç¥½Ã)   
+SELECT ename, INITCAP(ename) as cap, length(ename)
 FROM emp
 WHERE ename LIKE 'J%' OR
       ename LIKE 'A%' OR
@@ -33,23 +38,23 @@ WHERE ename LIKE 'J%' OR
 
 
 
---27) ì´ë¦„ì˜ ê¸€ìžìˆ˜ê°€ 6ìž ì´ìƒì¸ ì‚¬ì›ì˜ ì´ë¦„ì„ ì†Œë¬¸ìžë¡œ ì´ë¦„ë§Œ ì¶œë ¥í•˜ì‹œì˜¤
+--27) ÀÌ¸§ÀÇ ±ÛÀÚ¼ö°¡ 6ÀÚ ÀÌ»óÀÎ »ç¿øÀÇ ÀÌ¸§À» ¼Ò¹®ÀÚ·Î ÀÌ¸§¸¸ Ãâ·ÂÇÏ½Ã¿À
 SELECT LOWER(ename)
 FROM emp
 WHERE length(ename)=6;
 
 
 
---28) ì´ë¦„ì˜ ê¸€ìžìˆ˜ê°€ 6ìž ì´ìƒì¸ ì‚¬ëžŒì˜ ì´ë¦„ì„ ì•žì—ì„œ 3ìžë§Œ êµ¬í•˜ì—¬ ì†Œë¬¸ìžë¡œ ì¶œë ¥í•˜ì‹œì˜¤.
+--28) ÀÌ¸§ÀÇ ±ÛÀÚ¼ö°¡ 6ÀÚ ÀÌ»óÀÎ »ç¶÷ÀÇ ÀÌ¸§À» ¾Õ¿¡¼­ 3ÀÚ¸¸ ±¸ÇÏ¿© ¼Ò¹®ÀÚ·Î Ãâ·ÂÇÏ½Ã¿À.
 SELECT LOWER(SUBSTR(ename,1,3))
 FROM emp
 WHERE length(ename) >=6;
 
 
---29) ëª¨ë“  ì‚¬ì›ì˜ ì´ë¦„ê³¼ ê¸‰ì—¬ë¥¼ í‘œì‹œí•˜ì‹œì˜¤. ê¸‰ì—¬ëŠ” 15ìž ê¸¸ì´ë¡œ ì™¼ìª½ì— $ê¸°í˜¸ê°€ ì±„ì›Œì§„ í˜•ì‹ìœ¼ë¡œ
---    í‘œê¸°í•˜ê³  ì—´ë ˆì´ë¸”ì„ SALARYë¡œ ì§€ì •í•˜ì‹œì˜¤.
+--29) ¸ðµç »ç¿øÀÇ ÀÌ¸§°ú ±Þ¿©¸¦ Ç¥½ÃÇÏ½Ã¿À. ±Þ¿©´Â 15ÀÚ ±æÀÌ·Î ¿ÞÂÊ¿¡ $±âÈ£°¡ Ã¤¿öÁø Çü½ÄÀ¸·Î
+--    Ç¥±âÇÏ°í ¿­·¹ÀÌºíÀ» SALARY·Î ÁöÁ¤ÇÏ½Ã¿À.
 
--- LPAD :ì™¼ìª½ ê³µë°±ë„£ê¸°
-SELECT ename, LPAD(TO_CHAR( sal, '$99999'),15)as SALARY
+-- LPAD :¿ÞÂÊ °ø¹é(¶Ç´Â Æ¯Á¤¹®ÀÚ) ³Ö±â
+SELECT ename, LPAD(sal,15,'$')as SALARY
 FROM emp;
 
