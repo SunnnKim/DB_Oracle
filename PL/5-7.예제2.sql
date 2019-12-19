@@ -1,0 +1,14 @@
+
+-- FOR
+SET SERVEROUTPUT ON
+DECLARE
+	v_str	VARCHAR2(10) := NULL;
+BEGIN
+	FOR i_idx IN 1..10 LOOP
+		v_str := v_str || '*';
+		DBMS_OUTPUT.PUT_LINE(v_str);
+	END LOOP;
+END;
+/
+SET SERVEROUTPUT OFF
+
