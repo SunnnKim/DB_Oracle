@@ -73,7 +73,7 @@ BEGIN
         for i IN 1..9 LOOP
         DBMS_OUTPUT.put_line('i=' || i ); 
         counter:=i * 2;
-        DBMS_OUTPUT.put_line('2 * ' ||  + '='|| counter ); 
+        DBMS_OUTPUT.put_line('2 * ' ||  '='|| counter ); 
         END LOOP;
   
 END;
